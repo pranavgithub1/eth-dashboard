@@ -1,0 +1,7 @@
+date
+price
+7 day sma
+7 day sma normalized
+google trends
+new eth wallets
+new eth wallets 7 day sma
