@@ -8,9 +8,9 @@ import { Button } from "@material-ui/core";
 const GraphsBoard = () => {
     const [data,setData] = useState([]);
     const [graphs,setGraphs] = useState((localStorage.getItem('graphs')===null)?[
-        [0,{btc_sma: 'lines',eth_sma: 'lines',price_ratio: 'lines'},'linear','Price'],
-        [1,{eth_sma_norm: 'lines',eth_google_trends_scaled: 'lines'},'linear','Trends'],
-        [2,{btc_sma_norm: 'lines',new_eth_wallets_scaled: 'markers'},'log','Wallets'],
+        [0,{btc_sma: 'lines',eth_sma: 'lines',price_ratio: 'lines'},'log','Price'],
+        [1,{eth_sma: 'lines',eth_metcalfe_predicted: 'lines',price_ratio: 'lines'},'log','Price (ETH)'],
+        [2,{eth_sma: 'lines',eth_acp: 'markers',eth_doubling_time: 'lines',eth_halving_time: 'lines'},'log','Wallets'],
     ]:JSON.parse(localStorage.getItem('graphs')));
     const [isLoading,setIsLoading] = useState(false);
     const [key,setKey] = useState((localStorage.getItem('key')===null)?3:parseInt(localStorage.getItem('key')));

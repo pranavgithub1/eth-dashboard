@@ -123,6 +123,7 @@ const update = async () => {
         last += 86400;
         row.unix_timestamp = last;
         let d = new Date(last*1000);
+        let dnum = last + d.getTimezoneOffset()*60;
         d = new Date(last*1000 + d.getTimezoneOffset()*60000);
         row.date = d.toLocaleDateString();
 
@@ -138,15 +139,16 @@ const update = async () => {
         row.price_ratio_scaled = row.btc_sma / row.eth_sma;
         // console.log((trends_btc.default.timelineData.filter(obj => obj["time"]===(row.unix_timestamp - ((new Date(row.unix_timestamp*1000)).getDay()*86400)-86400).toString()))[0]);
         // console.log(row.unix_timestamp - ((new Date(row.unix_timestamp*1000)).getDay()*86400)-86400);
-        // console.log(trends_btc.default.timelineData.slice().reverse())
+        // console.log(trends_btc.default.timelineData.slice().reverse());
+        console.log((dnum - ((new Date(dnum*1000)).getDay()*86400)).toString());
         row.btc_google_trends_scaled = 
             trends_btc.default.timelineData
-            .filter(obj => obj["time"]===(row.unix_timestamp - ((new Date(row.unix_timestamp*1000)).getDay()*86400)-86400).toString())
+            .filter(obj => Math.abs(parseInt(obj["time"])-(dnum - ((new Date(dnum*1000)).getDay()*86400)))<=86400)
             [0]["value"][0] * 10;
         
         row.eth_google_trends_scaled = 
             trends_eth.default.timelineData
-            .filter(obj => obj["time"]===(row.unix_timestamp - ((new Date(row.unix_timestamp*1000)).getDay()*86400)-86400).toString())
+            .filter(obj => Math.abs(parseInt(obj["time"])-(dnum - ((new Date(dnum*1000)).getDay()*86400)))<=86400)
             [0]["value"][0] * 10;
         
         row.new_eth_wallets = new_eth_wallets.data[index]["v"];
