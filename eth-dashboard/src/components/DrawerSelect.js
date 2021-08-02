@@ -9,7 +9,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
-import { Link } from "react-router-dom";
+import Link from "react-router-dom/Link";
 const useStyles = makeStyles({
     list: {
       width: 250,

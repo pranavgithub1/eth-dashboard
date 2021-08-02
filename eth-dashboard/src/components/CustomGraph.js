@@ -1,5 +1,5 @@
-import React, { useEffect,useState } from "react";
-import myapi from "../apis/myapi";
+import React from "react";
+// import myapi from "../apis/myapi";
 import Plot from 'react-plotly.js';
 
 const CustomGraph = ({data,selection}) => {

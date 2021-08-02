@@ -2,7 +2,7 @@ import React, { useEffect,useState } from "react";
 import myapi from "../apis/myapi";
 import CustomGraphConatiner from "./CustomGraphContainer";
 import AddIcon from '@material-ui/icons/Add';
-import { Button } from "@material-ui/core";
+import Button from "@material-ui/core/Button";
 // {col: 'lines' , col2: 'dots'}
 
 const GraphsBoard = () => {

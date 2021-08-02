@@ -1,6 +1,15 @@
 import React, { useState,useEffect } from "react";
 import Plot from 'react-plotly.js';
-import { Checkbox, FormControlLabel, makeStyles, Paper, FormGroup, Button, TextField} from "@material-ui/core";
+// import { Checkbox, FormControlLabel, makeStyles, Paper, FormGroup, Button, TextField} from "@material-ui/core";
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import {makeStyles} from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import FormGroup from '@material-ui/core/FormGroup';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
