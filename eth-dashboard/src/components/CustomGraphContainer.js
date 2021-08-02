@@ -1,5 +1,7 @@
 import React, { useState,useEffect } from "react";
-import Plot from 'react-plotly.js';
+// import Plot from 'react-plotly.js';
+import Plotly from 'plotly.js-basic-dist';
+import createPlotlyComponent from 'react-plotly.js/factory'
 // import { Checkbox, FormControlLabel, makeStyles, Paper, FormGroup, Button, TextField} from "@material-ui/core";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -14,6 +16,9 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ShowChartIcon from '@material-ui/icons/ShowChart';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
+
+const Plot = createPlotlyComponent(Plotly);
+
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
