@@ -12,5 +12,5 @@ config.frontend = {};
 config.frontend.port = 80;
 
 // glassnode api
-config.api_key = 'your_api_key_here';
+config.api_key = '1vI4ABI64A0FkuhnYql7fvoBySW';
 
