@@ -1,9 +1,9 @@
 const update = require('./update');
 const express = require("express");
 const apiRouter = require('./routes');
-
+var cfg = require('../../config');
 const app = express();
-const port = 5000;
+const port = cfg.myapi.port;
 var cors = require('cors');
 var cron = require('cron');
 app.use(cors());
@@ -20,17 +20,5 @@ var job = new cron.CronJob({
 });
 job.start();
 
-app.listen(port, () => console.log(`Example app listening on port ${port}`));
+app.listen(port,cfg.myapi.host, () => console.log(`Example app listening on port ${port}`));
 
-// check in git code
-// check out in server 
-// install mysql on server
-// create 2 launchd services : 1 for web (port 80)   other for the background worker
-// install node and git
-/*
-    letsencrypt
-
-
-
-
-*/

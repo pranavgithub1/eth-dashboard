@@ -1,6 +1,7 @@
 const db = require('./db');
 const gn = require('./apis/addresses_gn');
 const googleTrends = require('google-trends-api');
+var cfg = require('../../config');
 const average = (array) => array.reduce((a, b) => a + b) / array.length;
 const unpack = (array,col) => array.map(obj => obj[col]);
 const calcDoublingTime = (results,leftovers,val,now,col) => {
@@ -45,7 +46,7 @@ const update = async () => {
             s: last-(86400*5),
             u: now,
             i: '24h',
-            api_key: '1vI4ABI64A0FkuhnYql7fvoBySW'
+            api_key: cfg.api_key
         }
     });
     const eth_prices = await gn.get("/market/price_usd_close",{
@@ -54,7 +55,7 @@ const update = async () => {
             s: last-(86400*5),
             u: now,
             i: '24h',
-            api_key: '1vI4ABI64A0FkuhnYql7fvoBySW'
+            api_key: cfg.api_key
         }
     });
     let trends_btc = await googleTrends.interestOverTime({keyword: 'Bitcoin',startTime: new Date(1468713600*1000)})
@@ -73,7 +74,7 @@ const update = async () => {
             s: last-(86400*5),
             u: now,
             i: '24h',
-            api_key: '1vI4ABI64A0FkuhnYql7fvoBySW'
+            api_key: cfg.api_key
         }
     });
     const active_eth_wallets = await gn.get("/addresses/active_count", {
@@ -82,7 +83,7 @@ const update = async () => {
             s: last-(86400*5),
             u: now,
             i: '24h',
-            api_key: '1vI4ABI64A0FkuhnYql7fvoBySW'
+            api_key: cfg.api_key
         }
     });
     const total_eth_wallets = await gn.get("/addresses/count",{
@@ -91,7 +92,7 @@ const update = async () => {
             s: last-(86400*5),
             u: now,
             i: '24h',
-            api_key: '1vI4ABI64A0FkuhnYql7fvoBySW'
+            api_key: cfg.api_key
         }
     });
     const eth_supply = await gn.get("/supply/current",{
@@ -100,7 +101,7 @@ const update = async () => {
             s: last-(86400*5),
             u: now,
             i: '24h',
-            api_key: '1vI4ABI64A0FkuhnYql7fvoBySW'
+            api_key: cfg.api_key
         }
     });
     //-------------------------------------------------------------------------------------//
