@@ -7,6 +7,7 @@ sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 echo '/swapfile swap swap defaults 0 0' > /etc/fstab
+sudo swapon --show
 
 # install nodejs
 curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
@@ -27,7 +28,7 @@ npm run build
 # setup systemd processes
 cd /etc/systemd/system
 sudo touch myapi.service
-sudo cat "[Unit]
+echo "[Unit]
 Description=API endpoints to access database
 
 [Service]
@@ -39,11 +40,11 @@ RestartSec=10
 
 [Install]
 WantedBy=basic.target
-" > myapi.service
+" | sudo tee myapi.service
 sudo systemctl enable myapi.service
 
 sudo touch eth-dashboard-frontend.service
-sudo cat "[Unit]
+echo "[Unit]
 Description=Ethereum Dashboard Frontend
 
 [Service]
@@ -55,7 +56,7 @@ RestartSec=10
 
 [Install]
 WantedBy=basic.target
-" > eth-dashboard-frontend.service
+" | sudo tee eth-dashboard-frontend.service
 sudo systemctl enable eth-dashboard-frontend.service
 
 
