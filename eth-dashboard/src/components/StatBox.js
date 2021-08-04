@@ -20,12 +20,12 @@ const StatBox = ({stat}) => {
     }
     return(
         <Grid item xs={4}>
-            <Card>
+            <Card >
                 <CardHeader
                     title={stat[0]}
                 />
                 <CardContent>
-                    <Typography variant="h5" gutterBottom>
+                    <Typography variant="h3" style={{color:stat[1]<0?'#f44336':'#4caf50',fontWeight:'bold'}} gutterBottom>
                         {renderStat(stat)}
                     </Typography>
                 </CardContent>

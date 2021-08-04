@@ -6,8 +6,11 @@ const statsPage = () => {
     return(
         <div>
             <TopBar title="Ethereum Stats" />
+            <div style={{flexGrow:1}}>
             <StatsBoard/>
             <Dataset/>
+            </div>
+            
         </div>
     )
 }

@@ -14,12 +14,15 @@ const useStyles = makeStyles((theme) => ({
     title: {
       flexGrow: 1,
     },
+    appbar: {
+      backgroundColor: '#2A3F54'
+    }
   }));
 const TopBar = ({title}) => {
     const classes = useStyles();
     return (
         <div>
-            <AppBar position="static">
+            <AppBar position="static" className={classes.appbar}>
                 <Toolbar>
                     <DrawerSelect/>
                     <Typography variant="h6" className={classes.title}>

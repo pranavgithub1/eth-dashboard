@@ -23,7 +23,7 @@ const Dataset = () => {
         }
         for(const key in data[0]) {columns.push({field: `${key}`,headerName:`${key}`,width:100})}
         return (
-            <div style={{height:400,width:'100%'}}>
+            <div style={{height:675,width:'100%',padding:15}}>
                 <DataGrid 
                     rows={data}
                     columns={columns}

@@ -43,7 +43,8 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         height: 'auto',
         overflow: 'auto',
-        position: 'relative'
+        position: 'relative',
+        borderTop: '1px solid LightGray'
     },
     deleteButton: {
         position: 'absolute',
@@ -245,7 +246,7 @@ const CustomGraphConatiner = ({data,deleteFunc,id}) => {
                         className={classes.titleField}
                         label="Title"
                         id="standard-size-small"
-                        defaultValue="Custom Title"
+                        // defaultValue="Custom Title"
                         size="small"
                         onChange={handleTitleChange}
                         inputProps={{
