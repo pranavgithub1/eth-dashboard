@@ -13,7 +13,7 @@ let db = {};
 
 db.all = () => {
     return new Promise((resolve, reject) => {
-        pool.query("SELECT * FROM updatetest2", (err, results) => {
+        pool.query("SELECT * FROM updatetest", (err, results) => {
             if (err) {
                 return reject(err);
             }
@@ -24,7 +24,7 @@ db.all = () => {
 
 db.update = (rows) => {
     return new Promise((resolve, reject) => {
-        pool.query("INSERT INTO updatetest2 VALUES ?",[rows.map(obj => Object.values(obj))],(err, results) => {
+        pool.query("INSERT INTO updatetest VALUES ?",[rows.map(obj => Object.values(obj))],(err, results) => {
             if (err) {
                 return reject(err);
             }
@@ -32,12 +32,6 @@ db.update = (rows) => {
             return resolve(results);
         });
     });
-    // var q = pool.query("INSERT INTO test VALUES ?",[rows.map(obj => Object.values(obj))],(err, results) => {
-    //     if (err) {
-    //         throw err;
-    //     }
-    // });
-    // console.log(q.sql);
 }
 
 

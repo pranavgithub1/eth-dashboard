@@ -60,4 +60,5 @@ WantedBy=basic.target
 sudo systemctl enable eth-dashboard-frontend.service
 
 
-
+sudo systemctl start myapi.service
+sudo systemctl start eth-dashboard-frontend.service
