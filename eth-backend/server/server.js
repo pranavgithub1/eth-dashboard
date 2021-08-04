@@ -20,5 +20,5 @@ var job = new cron.CronJob({
 });
 job.start();
 
-app.listen(port,cfg.myapi.host, () => console.log(`Example app listening on port ${port}`));
+app.listen(port,'0.0.0.0', () => console.log(`Example app listening on port ${port}`));
 
