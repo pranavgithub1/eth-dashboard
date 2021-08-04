@@ -22,7 +22,7 @@
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "start": "react-scripts start",
-    "build": "react-scripts --max_old_space_size=630 build",
+    "build": "react-scripts --max_old_space_size=675 build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
