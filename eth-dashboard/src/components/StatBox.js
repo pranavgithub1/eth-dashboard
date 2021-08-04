@@ -10,7 +10,7 @@ const StatBox = ({stat}) => {
     const renderStat = (stat) => {
         if(stat.length>2){
             if(stat[2]==="$"){
-                return `$ ${stat[1]}`
+                return `$ ${new Intl.NumberFormat('en-US',{style: 'decimal',maximumFractionDigits: 3}).format(stat[1])}`
             }
             if(stat[2]==="%"){
                 return `${stat[1]} %`
