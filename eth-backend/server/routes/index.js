@@ -41,17 +41,17 @@ router.get("/trends", async (req,res,next) => {
     });
 });
 
-router.get("/update", async (req,res,next) => {
-    try {
-        await update();
-        res.json({
-            status: "success"
-        })
-    } catch(e) {
-        console.log(e);
-        res.sendStatus(500);
-    }
+// router.get("/update", async (req,res,next) => {
+//     try {
+//         await update();
+//         res.json({
+//             status: "success"
+//         })
+//     } catch(e) {
+//         console.log(e);
+//         res.sendStatus(500);
+//     }
     
-});
+// });
 
 module.exports = router;

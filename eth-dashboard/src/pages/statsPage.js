@@ -10,7 +10,9 @@ const statsPage = () => {
             <StatsBoard/>
             <Dataset/>
             </div>
-            
+            <p style={{textAlign:'center',color:'gray'}}>
+                Powered by <a href="https://www.coingecko.com/api/documentations/v3">CoinGecko</a> and <a href="https://docs.glassnode.com/">Glassnode</a> APIs
+            </p>
         </div>
     )
 }
