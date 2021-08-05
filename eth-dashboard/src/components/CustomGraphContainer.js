@@ -33,12 +33,12 @@ const useStyles = makeStyles(theme => ({
     },
     colSelect: {
         padding: theme.spacing(2),
-        width: '22%',
+        width: '25%',
         height: '100%',
         overflow: 'auto',
     },
     plot: {
-        width: '78%',
+        width: '75%',
         height: 400
     },
     scaleSelect: {

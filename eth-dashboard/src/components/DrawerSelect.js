@@ -10,51 +10,32 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import IconButton from '@material-ui/core/IconButton';
 import Link from "react-router-dom/Link";
+const drawerWidth = '10%';
 const useStyles = makeStyles({
-    list: {
-      width: 250,
+    drawer: {
+      width: drawerWidth,
     },
-    fullList: {
-      width: 'auto',
-    },
+    drawerPaper: {
+      width: drawerWidth,
+    }
   });
   
 const DrawerSelect = () => {
     const classes = useStyles();
-    const [state,setState] = useState(false);
-    const toggleDrawer = (anchor,open) => (event) => {
-        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-          return;
-        }
-        setState(open);
-    };
-    const list = (anchor) => (
-        <div
-          className={classes.List}
-          role="presentation"
-          onClick={toggleDrawer(anchor, false)}
-          onKeyDown={toggleDrawer(anchor, false)}
-        >
-          <List>
-            <ListItem button component={Link} to="/graphs">  
-                <ListItemIcon><ShowChartIcon/></ListItemIcon>
-                <ListItemText primary="Graphs"/>
-            </ListItem>
-            <ListItem button component={Link} to="/">  
-                <ListItemIcon><TableChartIcon/></ListItemIcon>
-                <ListItemText primary="Stats"/>
-            </ListItem>
-          </List>
-        </div>
-    );
     return (
         <div>
-            {/* <React.Fragment key={'left'}> */}
-                <IconButton onClick={toggleDrawer('left', true)} color="inherit"><MenuIcon/></IconButton>
-                <Drawer anchor={'left'} open={state} onClose={toggleDrawer('left', false)}>
-                    {list('left')}
-                </Drawer>
-            {/* </React.Fragment> */}
+          <Drawer variant="permanent" anchor={'left'} classes={{paper:classes.drawerPaper}} className={classes.drawer}>
+            <List>
+              <ListItem button component={Link} to="/graphs">  
+                  <ListItemIcon><ShowChartIcon/></ListItemIcon>
+                  <ListItemText primary="Graphs"/>
+              </ListItem>
+              <ListItem button component={Link} to="/">  
+                  <ListItemIcon><TableChartIcon/></ListItemIcon>
+                  <ListItemText primary="Stats"/>
+              </ListItem>
+            </List>
+          </Drawer>
         </div>
     )
 }

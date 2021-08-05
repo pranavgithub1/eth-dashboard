@@ -26,7 +26,6 @@ const TopBar = ({title}) => {
         <div>
             <AppBar position="static" className={classes.appbar}>
                 <Toolbar>
-                    <DrawerSelect/>
                     <Typography variant="h6" className={classes.title}>
                     {title}
                     </Typography>
