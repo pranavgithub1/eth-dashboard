@@ -30,7 +30,7 @@ const TopBar = ({title}) => {
                     <Typography variant="h6" className={classes.title}>
                     {title}
                     </Typography>
-                    <a href="https://ethereum.org/en/" target="_blank" rel="noreferrer noopener"><img src={logo} width='40' height='40'/></a>
+                    <a href="https://ethereum.org/en/" target="_blank" rel="noreferrer noopener"><img src={logo} width='40' height='40' alt="Ethereum Crypto Logo"/></a>
                 </Toolbar>
             </AppBar>
         </div>
