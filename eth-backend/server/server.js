@@ -6,6 +6,10 @@ const app = express();
 const port = cfg.myapi.port;
 var cors = require('cors');
 var cron = require('cron');
+
+var fs = require('fs');
+var https = require('https');
+
 app.use(cors());
 app.use(express.json());
 // app.use(update);
@@ -19,6 +23,12 @@ var job = new cron.CronJob({
     }
 });
 job.start();
-
+// https
+options = {
+    key: "",
+    cert: ""
+  }
+httpsServer = https.createServer(options,app);
+// change app to httpServer for https
 app.listen(port,'0.0.0.0', () => console.log(`Example app listening on port ${port}`));
 

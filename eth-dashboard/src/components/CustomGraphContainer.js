@@ -33,9 +33,13 @@ const useStyles = makeStyles(theme => ({
     },
     colSelect: {
         padding: theme.spacing(2),
-        width: 400,
+        width: '22%',
         height: '100%',
         overflow: 'auto',
+    },
+    plot: {
+        width: '78%',
+        height: 400
     },
     scaleSelect: {
         padding: theme.spacing(2),
@@ -92,8 +96,9 @@ const getDefaultState = (data,params) => {
 };
 const getDefaultLayout = (type,title) => {
     return {
-        width:980,
-        height:400,
+        // width:980,
+        // height:400,
+        autosize: true,
         title:title,
         yaxis:{type: type,autorange: true},
     }
@@ -213,7 +218,7 @@ const CustomGraphConatiner = ({data,deleteFunc,id}) => {
                                             onChange={handleChange}
                                             name={col}
                                         />
-                                        <IconButton disabled={!graphData[columns.indexOf(col)].visible} key={col+'icon'} size="small" onClick={()=>{changeMode(col);toggleIcon(col)}}>
+                                        <IconButton disabled={!graphData[columns.indexOf(col)].visible} key={col+'icon'} size="small" onClick={()=>{changeMode(col);toggleIcon(col)}} >
                                             {(lineMode[columns.indexOf(col)])?<MoreHorizIcon/>:<ShowChartIcon/>}
                                         </IconButton>
                                        
@@ -227,6 +232,9 @@ const CustomGraphConatiner = ({data,deleteFunc,id}) => {
                     <Plot
                         data={graphData}
                         layout={layout}
+                        useResizeHandler
+                        className={classes.plot}
+
                     />
                 </div>
                 <div className={classes.scaleSelect}>
