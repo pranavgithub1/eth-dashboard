@@ -17,6 +17,9 @@ const useStyles = makeStyles({
     },
     drawerPaper: {
       width: drawerWidth,
+    },
+    listItemText: {
+      fontSize: '1.2vw'
     }
   });
   
@@ -28,11 +31,11 @@ const DrawerSelect = () => {
             <List>
               <ListItem button component={Link} to="/graphs">  
                   <ListItemIcon><ShowChartIcon/></ListItemIcon>
-                  <ListItemText primary="Graphs"/>
+                  <ListItemText classes={{primary:classes.listItemText}} primary="Graphs"/>
               </ListItem>
               <ListItem button component={Link} to="/">  
                   <ListItemIcon><TableChartIcon/></ListItemIcon>
-                  <ListItemText primary="Stats"/>
+                  <ListItemText classes={{primary:classes.listItemText}} primary="Stats"/>
               </ListItem>
             </List>
           </Drawer>

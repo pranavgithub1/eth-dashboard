@@ -22,24 +22,44 @@ const Plot = createPlotlyComponent(Plotly);
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
-        padding: theme.spacing(4)
+        padding: theme.spacing(4),
+        // border: '3px solid black'
     },
     graphRow: {
         // padding: theme.spacing(2),
         display: 'flex',
-        flexDirection: 'row',
+        // flexDirection: 'row',
         width: '100%',
         height: 400,
+        // border: '2px solid green'
     },
     colSelect: {
         padding: theme.spacing(2),
-        width: '25%',
-        height: '100%',
         overflow: 'auto',
+        // width: '30%',
+        // resize: 'horizontal',
+        height:'100%',
+        // width:'max-content',
+        // minWidth:100,
+        // float: 'left',
+        // border: '1px solid brown'
+        minWidth: 'max-content',
+        
     },
     plot: {
-        width: '75%',
-        height: 400
+        // width: '80%',
+        // minWidth:'fit-content',
+        height: '100%',
+        width:'100%',
+        // border: '1px solid red',        
+    },
+    plotDiv: {
+        flexGrow: 1,
+        // flexShrink: 2,
+        // flexGrow: 1,
+        minWidth: 0,
+        // width: '100%',
+        // border: '2px solid purple'
     },
     scaleSelect: {
         padding: theme.spacing(2),
@@ -48,14 +68,15 @@ const useStyles = makeStyles(theme => ({
         height: 'auto',
         overflow: 'auto',
         position: 'relative',
-        borderTop: '1px solid LightGray'
+        // borderTop: '1px solid LightGray'
     },
     deleteButton: {
         position: 'absolute',
         right: theme.spacing(2),
     },
     colDiv: {
-        width: 145,
+        width: '200px',
+        background: 'red'
     },
     titleField: {
         position: 'absolute',
@@ -198,29 +219,32 @@ const CustomGraphConatiner = ({data,deleteFunc,id}) => {
     };
     return (
         <div className={classes.root}>
-            <Paper>
+            <Paper style={{width:'100%',height:'100%'}}>
                 <div className={classes.graphRow}>
                     <div container className={classes.colSelect}>
                         <FormGroup >
                             {Object.keys(data).map((col,idx) => {
                                 if(col==='unix_timestamp' || col==='date'){return;}
                                 return (
-                                    <div key={col+'wrapper'}>
+                                    <div key={col+'wrapper'} style={{display:'flex',flexDirection:'row'}}>
+                                        <IconButton disabled={!graphData[columns.indexOf(col)].visible} key={col+'icon'} size="small" onClick={()=>{changeMode(col);toggleIcon(col)}} >
+                                            {(lineMode[columns.indexOf(col)])?<MoreHorizIcon/>:<ShowChartIcon/>}
+                                        </IconButton>
                                         <FormControlLabel
                                             key={col+'checkbox'}
                                             control={
                                                 <Checkbox/>
                                             }
                                             label={
-                                                <div className={classes.colDiv} key={col+'checkdiv'}>{col}</div>
+                                                <span style={{fontSize:'clamp(10px,1vw,1vw)'}}>{col}</span>
                                             }
                                             checked={graphData[columns.indexOf(col)].visible}
                                             onChange={handleChange}
                                             name={col}
                                         />
-                                        <IconButton disabled={!graphData[columns.indexOf(col)].visible} key={col+'icon'} size="small" onClick={()=>{changeMode(col);toggleIcon(col)}} >
+                                        {/* <IconButton disabled={!graphData[columns.indexOf(col)].visible} key={col+'icon'} size="small" onClick={()=>{changeMode(col);toggleIcon(col)}} >
                                             {(lineMode[columns.indexOf(col)])?<MoreHorizIcon/>:<ShowChartIcon/>}
-                                        </IconButton>
+                                        </IconButton> */}
                                        
                                     </div>                          
                                 )
@@ -229,13 +253,15 @@ const CustomGraphConatiner = ({data,deleteFunc,id}) => {
                             
                         </FormGroup>
                     </div>
-                    <Plot
-                        data={graphData}
-                        layout={layout}
-                        useResizeHandler
-                        className={classes.plot}
+                    <div className={classes.plotDiv}>
+                        <Plot
+                            data={graphData}
+                            layout={layout}
+                            useResizeHandler
+                            className={classes.plot}
 
-                    />
+                        />
+                    </div>
                 </div>
                 <div className={classes.scaleSelect}>
                     <FormGroup>
