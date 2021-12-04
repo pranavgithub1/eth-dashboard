@@ -6,8 +6,8 @@ import CardHeader from "@material-ui/core/CardHeader";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core";
-
-
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
@@ -30,9 +30,15 @@ const useStyles = makeStyles(theme =>({
     },
     fullCardHeight: {
         height:'100%',
+        position: 'relative',
+    },
+    delIco : {
+        position: "relative",
+        bottom: "5px",
+        right: "5px",
     }
 }));
-const StatBox = ({stat}) => {
+const StatBox = ({stat,delFunc}) => {
     const defaultValue = (
         (typeof stat[1]==='object'&&stat[1]!==null) &&
         ( stat[1]['usd'] ? 'usd': Object.keys(stat[1])[0] )
@@ -79,22 +85,22 @@ const StatBox = ({stat}) => {
                     action={
                         <div>
                             {(typeof stat[1]==='object'&&stat[1]!==null) && <div>
-                        <FormControl className={classes.formControl}>
-                            {/* <InputLabel id="demo-simple-select-label"></InputLabel> */}
-                            <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={currency}
-                            onChange={handleChange}
-                            >
-                            {
-                                Object.keys(stat[1]).map(key => (
-                                    <MenuItem value={key} key={stat[1]+key}>{key}</MenuItem>
-                                ))
-                            }
-                            </Select>
-                        </FormControl>
-                    </div>}
+                                <FormControl className={classes.formControl}>
+                                    <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={currency}
+                                    onChange={handleChange}
+                                    >
+                                    {
+                                        Object.keys(stat[1]).map(key => (
+                                            <MenuItem value={key} key={stat[1]+key}>{key}</MenuItem>
+                                        ))
+                                    }
+                                    </Select>
+                                </FormControl>
+                            </div>}
+                            
                         </div>
                     }
                     // classes={{
@@ -109,6 +115,11 @@ const StatBox = ({stat}) => {
                     </Typography>
                     
                 </CardContent>
+                <div style={{position:"absolute",bottom:'5px',right:'5px'}}>
+                    <IconButton onClick={()=>{delFunc(stat[0])}}>
+                        <DeleteIcon/>
+                    </IconButton>
+                </div>
                 
             </Card>
         </Grid>

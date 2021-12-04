@@ -65,6 +65,11 @@ const StatsBoard = () => {
             return [...oldStatList,value];
         });
     }
+    const removeStatBox = (value) => {
+        setStatList((oldStatList)=> {
+            return oldStatList.filter(e => e!=value);
+        })
+    }
     useEffect(()=>{
         try {
             localStorage.setItem('statList',JSON.stringify(statList))
@@ -122,7 +127,7 @@ const StatsBoard = () => {
         return (
             <div className={classes.root}>
                 <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                    Open Menu
+                    Add Stat
                 </Button>
                 <Menu
                     id="simple-menu"
@@ -141,7 +146,7 @@ const StatsBoard = () => {
                     {statList.map((statTitle) => {
                         let statArr = stats.find(elem=>elem[0]===statTitle);
                         if(statArr==null) return;
-                        return <StatBox key={statTitle+"statBox"} stat={statArr} />
+                        return <StatBox key={statTitle+"statBox"} stat={statArr} delFunc={removeStatBox}/>
                     })}
                 </Grid>
             </div>
