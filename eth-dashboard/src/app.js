@@ -1,17 +1,19 @@
 import React from 'react';
-import graphsPage from "./pages/graphsPage";
-import statsPage from "./pages/statsPage";
+import GraphsPage from "./pages/GraphsPage";
+import StatsPage from "./pages/StatsPage";
 import "./app.css";
 import { BrowserRouter, Route } from 'react-router-dom';
-import CssBaseline from '@material-ui/core/CssBaseline';
 const App = () => {
+    
     return (
         <div>
-            <CssBaseline/>
-            <BrowserRouter>
-                <Route exact path="/" component = {statsPage}/>
-                <Route exact path="/graphs" component = {graphsPage}/>
-            </BrowserRouter>
+            {/* <ThemeProvider theme={theme}> */}
+                {/* <CssBaseline/> */}
+                <BrowserRouter>
+                    <Route exact path="/" component = {StatsPage}/>
+                    <Route exact path="/graphs" component = {GraphsPage}/>
+                </BrowserRouter>
+            {/* </ThemeProvider> */}
         </div>
     )
 }

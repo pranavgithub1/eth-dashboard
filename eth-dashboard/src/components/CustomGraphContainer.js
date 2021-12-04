@@ -5,7 +5,7 @@ import createPlotlyComponent from 'react-plotly.js/factory'
 // import { Checkbox, FormControlLabel, makeStyles, Paper, FormGroup, Button, TextField} from "@material-ui/core";
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {makeStyles} from '@material-ui/core/styles';
+import {makeStyles, useTheme} from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import FormGroup from '@material-ui/core/FormGroup';
 import Button from '@material-ui/core/Button';
@@ -18,7 +18,6 @@ import ShowChartIcon from '@material-ui/icons/ShowChart';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 
 const Plot = createPlotlyComponent(Plotly);
-
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -115,13 +114,45 @@ const getDefaultState = (data,params) => {
         }
     ));
 };
-const getDefaultLayout = (type,title) => {
+const getDefaultLayout = (type,title,theme) => {
     return {
         // width:980,
         // height:400,
         autosize: true,
-        title:title,
-        yaxis:{type: type,autorange: true},
+        // title:title,
+        // yaxis:{type: type,autorange: true},
+        paper_bgcolor: theme.palette.background.paper,
+        plot_bgcolor: theme.palette.background.paper,
+        xaxis: {
+            color: theme.palette.text.primary
+        },
+        yaxis: {
+            type: type,
+            autorange: true,
+            color: theme.palette.text.primary,
+        },
+        legend: {
+            font: {
+                color: theme.palette.text.primary
+            },
+        },
+        title: {
+            text: title,
+            font: {
+                color: theme.palette.text.primary,
+            }
+        },
+        scene: {
+            xaxis: {
+                color: theme.palette.text.primary
+            },
+            yaxis: {
+                color: theme.palette.text.primary
+            },
+            zaxis: {
+                color: theme.palette.text.primary
+            },
+        }
     }
 };
 const getDefaultMode = (graphData) => {
@@ -136,10 +167,11 @@ const getObject = (graphData) => {
 }
 
 const CustomGraphConatiner = ({data,deleteFunc,id}) => {
+    const theme = useTheme();
     const columns = Object.keys(data)
     const classes = useStyles();
     const [graphData,setGraphData] = useState(getDefaultState(data,id[1]));
-    const [layout,setLayout] = useState(getDefaultLayout(id[2],id[3]));
+    const [layout,setLayout] = useState(getDefaultLayout(id[2],id[3],theme));
     const [lineMode,setLineMode] = useState(getDefaultMode(getDefaultState(data,id[1])));
     const [count,setCount] = useState(Object.keys(id[1]).length);
     useEffect(()=>{
@@ -193,13 +225,13 @@ const CustomGraphConatiner = ({data,deleteFunc,id}) => {
     const handleTitleChange = (event) => {
         setLayout((oldLayout) => {
             let newLayout = Object.assign({},oldLayout);
-            newLayout.title = event.target.value;
+            newLayout.title.text = event.target.value;
             return newLayout;
         });
     };
     const clearSelection = () => {
         setGraphData(getDefaultState(data,{}));
-        setLayout(getDefaultLayout('lines','Custom'));
+        setLayout(getDefaultLayout('lines','Custom',theme));
         setLineMode(getDefaultMode(getDefaultState(data,{})));
         setCount(0);
     };
