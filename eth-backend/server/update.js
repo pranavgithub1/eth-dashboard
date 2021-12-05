@@ -124,7 +124,7 @@ const update = async () => {
         last += 86400;
         row.unix_timestamp = last;
         let d = new Date(last*1000);
-        let dnum = last + d.getTimezoneOffset()*60;
+        let dnum = last;// + d.getTimezoneOffset()*60;
         d = new Date(last*1000 + d.getTimezoneOffset()*60000);
         row.date = d.toLocaleDateString();
 
@@ -141,17 +141,39 @@ const update = async () => {
         // console.log((trends_btc.default.timelineData.filter(obj => obj["time"]===(row.unix_timestamp - ((new Date(row.unix_timestamp*1000)).getDay()*86400)-86400).toString()))[0]);
         // console.log(row.unix_timestamp - ((new Date(row.unix_timestamp*1000)).getDay()*86400)-86400);
         // console.log(trends_btc.default.timelineData.slice().reverse());
-        console.log((dnum - ((new Date(dnum*1000)).getDay()*86400)).toString());
-        row.btc_google_trends_scaled = 
-            trends_btc.default.timelineData
-            .filter(obj => Math.abs(parseInt(obj["time"])-(dnum - ((new Date(dnum*1000)).getDay()*86400)))<=86400)
-            [0]["value"][0] * 10;
+        // console.log((dnum - ((new Date(dnum*1000)).getDay()*86400)).toString());
+        // row.btc_google_trends_scaled = 
+        //     trends_btc.default.timelineData
+        //     .filter(obj => Math.abs(parseInt(obj["time"])-(dnum - ((new Date(dnum*1000)).getDay()*86400)))<=86400)
+        //     [0]["value"][0] * 10;
         
-        row.eth_google_trends_scaled = 
-            trends_eth.default.timelineData
-            .filter(obj => Math.abs(parseInt(obj["time"])-(dnum - ((new Date(dnum*1000)).getDay()*86400)))<=86400)
-            [0]["value"][0] * 10;
-        
+        // row.eth_google_trends_scaled = 
+        //     trends_eth.default.timelineData
+        //     .filter(obj => Math.abs(parseInt(obj["time"])-(dnum - ((new Date(dnum*1000)).getDay()*86400)))<=86400)
+        //     [0]["value"][0] * 10;
+
+        let closest;
+        let min = -1;
+        for(obj of trends_btc.default.timelineData){
+            if(min == -1) min = Math.abs(dnum - parseInt(obj["time"]));
+            let dist = Math.abs(dnum - parseInt(obj["time"]));
+            if(dist < min){
+                closest = obj["value"][0];
+                min = dist;
+            }
+        }
+        row.btc_google_trends_scaled = closest * 10;
+        min = -1;
+        for(obj of trends_eth.default.timelineData){
+            if(min == -1) min = Math.abs(dnum - parseInt(obj["time"]));
+            let dist = Math.abs(dnum - parseInt(obj["time"]));
+            if(dist < min){
+                closest = obj["value"][0];
+                min = dist;
+            }
+        }
+        row.eth_google_trends_scaled = closest * 10;
+
         row.new_eth_wallets = new_eth_wallets.data[index]["v"];
         row.new_eth_wallets_sma = average(new_eth_wallets.data.slice(index-6,index+1).map(obj=>obj["v"]));
         row.new_eth_wallets_scaled = (row.new_eth_wallets_sma / (Math.max(maxEthNew,Math.max(...unpack(rows,"new_eth_wallets_sma")))-Math.min(minEthNew,Math.min(...unpack(rows,"new_eth_wallets_sma")))))*1000;
