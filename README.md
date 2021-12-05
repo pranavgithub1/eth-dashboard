@@ -31,19 +31,17 @@ node server.js
 
 Now create a new terminal, and navigate to the folder where you ran `git clone`, then
 
-```
+```sh
 cd eth-dashboard/eth-dashboard
 npm install
+# start the development server
 npm start
 ```
 
-## Deploy to cloud (Linux VM with <=2GB RAM)
+Done!
+
+To stop the webapp, ctrl-c in both terminals, then stop the database with:
 
 ```sh
-# clone the repo
-git clone https://github.com/pranavgithub1/eth-dashboard.git
-cd eth-dashboard
-
-#run setup script
-bash setup.sh
+sudo service mysql stop
 ```
